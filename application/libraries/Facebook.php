@@ -85,4 +85,20 @@ class Facebook {
     }
     return false;
   }
+
+  /**
+   * Returns the $path info as an array.
+   */
+  public function get_response($path = '/me', $method = 'GET') {
+    if ( $this->session ) {
+      // Graph API to request user data
+      $request = ( new FacebookRequest( $this->session, $method, $path ) )->execute();
+
+      // Get response as an array
+      $response = $request->getGraphObject()->asArray();
+
+      return $response;
+    }
+    return false;
+  }
 }
